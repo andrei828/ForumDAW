@@ -1,0 +1,39 @@
+﻿@model IEnumerable<lab6.Models.Post>
+
+@{
+    ViewBag.Title = "ListPosts";
+}
+
+<h2>ListPosts</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table-bordered" style="width: 100%; text-align: center;">
+    <tr>
+        <th style="text-align: center">
+            @Html.DisplayNameFor(model => model.Content)
+        </thstyle="text-align:>
+        <th style="text-align: center">
+            @Html.DisplayNameFor(model => model.Views)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td style="padding: 20px">
+            @Html.DisplayFor(modelItem => item.Content)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Views)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PostId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PostId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PostId })
+        </td>
+    </tr>
+}
+
+</table>

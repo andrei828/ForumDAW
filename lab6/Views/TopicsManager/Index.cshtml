@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<link href="~/StyleSheetTopics.css" rel="stylesheet" type="text/css" />
+
+
+<div class="title-header">
+    <h1 class="title-label">@ViewBag.Topic.Title</h1>
+</div>
+
+<div style="text-align:center">
+    <button class="btn btn-default follow-btn" id="bt-follow">Follow topic <span class="badge">@ViewBag.Topic.Followers.Count</span></button>
+
+    <input type="text" placeholder="Add a new post..." class="form-control" id="new_post" />
+    <button class="btn btn-default" id="bt-newpost">Create a post</button>
+</div>
+
+@section scripts
+    {
+    <script>
+        $(document).ready(function () {
+            $("#bt-newpost").on("click", function () {
+
+                console.log("****");
+                console.log(JSON.stringify({
+                    "Content": $("#new_post").val(),
+                    "TopicId": @ViewBag.Topic.TopicId
+                }));
+
+                if (confirm("Are you sure?")) {
+                    $.ajax({
+                        url: "/api/Posts",
+                        method: "POST",
+                        cache: false,
+                        data: JSON.stringify({
+                            "Content": $("#new_post").val(),
+                            "TopicId": @ViewBag.Topic.TopicId
+                        }),
+                        contentType: "application/json",
+                        success: function () {
+                            console.log("Done hehehe")
+                            location.reload();
+                        }
+                    });
+                }
+            });
+
+            $("#bt-follow").on("click", function () {
+
+                console.log("****");
+                if (confirm("Are you sure?")) {
+                    $.ajax({
+                        url: "/api/UserActions/Follow",
+                        method: "POST",
+                        cache: false,
+                        data: JSON.stringify({
+                            "TopicId": @ViewBag.Topic.TopicId
+                        }),
+                        contentType: "application/json",
+                        success: function () {
+                            console.log("Done hehehe")
+                            location.reload();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
+    <table class="table">
+    @foreach (var post in ViewBag.Topic.Posts)
+    {
+        <div class="post-item">
+            @{
+                <h2>@post.Content</h2>
+                <hr />
+                <div class="post-actions">
+                    @{
+                        String postURL = "/PostsManager/Index/" + post.PostId;
+                        <a href="@postURL">View</a>
+                        <span>@post.Comments.Count comments</span>
+                        <span>@post.Views views</span>
+                    }
+                </div>
+
+            }
+        </div>
+    }
+     
+    </table>

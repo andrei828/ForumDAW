@@ -1,0 +1,36 @@
+﻿@model IEnumerable<lab6.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Users";
+}
+<h2>@ViewBag.Title</h2>
+
+<table class="table">
+    <th>Username</th>
+    <th>Email</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <tbody>
+        @foreach (var item in ViewBag.Users)
+        {
+            if (item.UserName == "admin@admin.com")
+            {
+                continue;
+            }
+            <tr>
+                <td style="padding: 20px">@item.UserName</td>
+                <td>@item.Email</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,97 @@
+﻿
+@{
+    /**/
+
+    ViewBag.Title = "Index";
+}
+
+<link href="~/StyleSheetFeed.css" rel="stylesheet" type="text/css" />
+
+<br />
+
+@if(ViewBag.CurrentUser != null)
+{
+    <h2 class="title-label"> Your following topics</h2>
+    if (ViewBag.CurrentUser.Topics.Count < 1)
+    {
+        <br />
+        <p style="padding-left: 35px; font-size: 120%"><i>You follow no topics yet...</i></p>
+    }
+    else
+    {
+        <div class="follow-topic-wrapper">
+            @foreach (var topic in ViewBag.CurrentUser.Topics)
+            {
+            <div class="follow-topic-item">
+                @{
+                    <h2>@topic.Title</h2>
+                    String topicURL = "/TopicsManager/Index/" + topic.TopicId;
+                    <a href="@topicURL" style="text-align:left;">See what's new</a>
+                 }
+            
+            </div>
+            }
+        </div>
+        <br />
+    }
+}
+<br />
+<hr class="col-lg-pull-12" />
+<br />
+<h3 class="title-label">Explore the topics</h3>
+<div class="topic-wrapper">
+    @foreach (var topic in ViewBag.Topics)
+    {
+        String topicURL = "/TopicsManager/Index/" + topic.TopicId;
+
+        <div class="topic-item-wrapper">
+
+            <div class="topic-item">
+                <a class="topic-link" href="@topicURL">
+                    <div class="topic-item-top">
+                        <span class="topic-title">@topic.Title</span>
+                        <button class="btn btn-default follow-btn" type="button">
+                            Follow <span class="badge">@topic.Followers.Count</span>
+                        </button>
+                    </div>
+                    <hr>
+                    <div class="topic-item-body">
+                        @{
+                            int n = 0;
+                            foreach (var post in topic.Posts) {
+                                if (n == 3)
+                                {
+                                    break;
+                                }
+                                <p style="font-weight:200; font-size:200%;">@post.Content <i><span style="color: grey; font-size: 60%">@post.Comments.Count comments</span></i></p>
+                                n += 1;
+                            }
+                        }
+
+                    </div>
+                </a>
+            </div>
+        </div>
+    }
+</div>
+
+<!--@foreach (var topic in ViewBag.Topics)
+{
+    <h2>@topic.Title</h2>
+    foreach (var post in topic.Posts)
+    {
+        <h3>@post.Content</h3>
+
+        foreach (var comment in post.Comments)
+        {
+            <p>@comment.Content, @comment.CommentId, @comment.Engagement.Likes Likes</p>
+            <form action="/api/comments/postComment" method="post" enctype="application/x-www-form-urlencoded">
+                <label for="fname">Content:</label>
+                <input type="text" id="fname" name="Content"><br><br>
+                <label for="lname">postId:</label>
+                <input type="text" id="lname" value="@post.PostId" name="PostId"><br><br>
+                <input type="submit" value="Post">
+            </form>
+        }
+    }
+}-->

@@ -1,0 +1,65 @@
+﻿html, body {
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    font-family: 'Segoe UI';
+    background: linear-gradient(-135deg, rgb(189, 206, 196) 10%, transparent), repeating-linear-gradient(45deg, rgba(31, 148, 94, 0.5) 0%, rgba(237, 226, 245, 0.60) 5%, transparent 5%, transparent 10%), repeating-linear-gradient(-45deg, rgba(114, 176, 152, 0.4) 0%, rgba(31, 148, 94, 0.5) 5%, transparent 5%, transparent 10%);
+    background-color: rgba(34, 76, 152, 0.25);
+}
+
+.title-label {
+    border: 1px solid grey;
+    width: fit-content;
+    padding: 15px;
+    font-size: 300%;
+    border-radius: 15px;
+    backdrop-filter: blur(20px);
+
+}
+
+.title-header {
+    text-align: center;
+    position: relative;
+    width: 80%;
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    backdrop-filter: blur(6px);
+    margin-top: 50px;
+    padding-bottom: 50px;
+}
+
+.follow-btn {
+    position: relative;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: 15px;
+}
+
+.post-item {
+    position: relative;
+    height: 150px;
+    border-radius: 15px;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    background-color: #fff;
+    padding: 15px;
+    margin: 50px;
+    padding-left: 30px;
+}
+
+.post-actions { 
+    display: flex;
+    justify-content: space-around;
+}
+
+.form-control {
+    display: initial !important;
+    transform: translateY(2.3px);
+}

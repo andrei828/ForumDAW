@@ -1,0 +1,89 @@
+﻿html, body {
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    font-family: 'Segoe UI';
+    background: linear-gradient(-135deg, rgb(189, 206, 196) 10%, transparent), repeating-linear-gradient(45deg, rgba(31, 148, 94, 0.5) 0%, rgba(237, 226, 245, 0.60) 5%, transparent 5%, transparent 10%), repeating-linear-gradient(-45deg, rgba(114, 176, 152, 0.4) 0%, rgba(31, 148, 94, 0.5) 5%, transparent 5%, transparent 10%);
+    background-color: rgba(34, 76, 152, 0.25);
+}
+
+.topic-link, .topic-link:hover, .topic-link:visited, .topic-link:link, .topic-link:active {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+.topic-wrapper {
+}
+
+.topic-item-wrapper {
+    width: 100%;
+    
+}
+
+.topic-item {
+    background-color: #fff;
+    width: 650px;
+    height: 300px;
+    padding-bottom: 15px;
+    margin: 50px;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+}
+
+.topic-title {
+    font-size: 330%;
+    font-weight: 400;
+    padding: 15px;
+}
+.topic-item-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.follow-btn {
+    max-height: 50px;
+    position: relative;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: 15px;
+    transform: translateY(10%);
+}
+
+.topic-item-body {
+   padding-left: 40px;
+}
+
+.title-label {
+    border: 1px solid grey;
+    width: fit-content;
+    padding: 15px;
+    border-radius: 15px;
+    backdrop-filter: blur(20px);
+}
+
+
+.follow-topic-wrapper {
+    display: inline;
+    transform: translateY(-50px);
+}
+
+.follow-topic-item {
+    display: inline-block;
+    position: relative;
+    max-width: 280px;
+    margin-right: 50px;
+    margin-top: 30px;
+    background-color: white;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    border-radius: 15px;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
