@@ -184,6 +184,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\PostsManagerController.cs" />
+    <Compile Include="Controllers\TelemetriesController.cs" />
     <Compile Include="Controllers\TopicsController.cs" />
     <Compile Include="Controllers\TopicsManagerController.cs" />
     <Compile Include="Controllers\UserActionsController.cs" />
@@ -193,15 +194,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Engagement.cs" />
-    <Compile Include="Models\IdentityHelper.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\Telemetry.cs" />
     <Compile Include="Models\Topic.cs" />
     <Compile Include="Models\UserViewModel.cs" />
+    <Compile Include="NoBadWords.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -227,6 +228,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="StyleSheetAdmin.css" />
     <Content Include="StyleSheetFeed.css" />
     <Content Include="StyleSheetPosts.css" />
     <Content Include="StyleSheetTopics.css" />
@@ -286,6 +288,12 @@
     <Content Include="Views\TopicsManager\ListTopics.cshtml" />
     <Content Include="Views\PostsManager\ListPosts.cshtml" />
     <Content Include="Views\CommentsManager\ListComments.cshtml" />
+    <Content Include="Views\Telemetries\Create.cshtml" />
+    <Content Include="Views\Telemetries\Delete.cshtml" />
+    <Content Include="Views\Telemetries\Details.cshtml" />
+    <Content Include="Views\Telemetries\Edit.cshtml" />
+    <Content Include="Views\Telemetries\Index.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

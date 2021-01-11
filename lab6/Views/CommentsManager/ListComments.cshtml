@@ -1,9 +1,12 @@
 ﻿@model IEnumerable<lab6.Models.Comment>
 
+<link href="~/StyleSheetAdmin.css" rel="stylesheet" type="text/css" />
+
+<h2>Comments</h2>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table-bordered table-hover table-responsive">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Content)
@@ -12,22 +15,36 @@
             @Html.DisplayNameFor(model => model.Author)
         </th>
         <th></th>
+        <th></th>
+        <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Content)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Author)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CommentId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CommentId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CommentId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                @if (item.Author == null)
+                {
+                    <span>Anonymus</span>
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.Author)
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CommentId })
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.CommentId })
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.CommentId })
+            </td>
+        </tr>
+    }
 
 </table>

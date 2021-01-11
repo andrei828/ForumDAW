@@ -8,10 +8,11 @@ namespace lab6.Models
 {
     public class Post
     {
-        
+        [Key]
         [Required(ErrorMessage = "Missing field")]
         public int PostId { get; set; }
 
+        [NoBadWords]
         [StringLength(502)]
         [Required(ErrorMessage = "Missing field")]
         public string Content { get; set; }
@@ -20,10 +21,11 @@ namespace lab6.Models
         public int Views { get; set; }
 
         // Many to one
-        [Required(ErrorMessage = "Missing field")]
+        // No required validation because of the editing mechanism
         public virtual Topic Topic { get; set; }
 
         // One to Many
+        //[Required(ErrorMessage = "Missing field")]
         public virtual ICollection<Comment> Comments { get; set; }
 
         public Post()

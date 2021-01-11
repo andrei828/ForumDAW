@@ -41,6 +41,27 @@
                     });
                 }
             });
+
+            $(".like-button").on("click", function (obj) {
+
+                commentId = obj.target.classList[obj.target.classList.length - 1];
+
+                if (confirm("Are you sure?")) {
+                    $.ajax({
+                        url: "/api/UserActions/Like",
+                        method: "POST",
+                        cache: false,
+                        data: JSON.stringify({
+                            "CommentId": commentId
+                        }),
+                        contentType: "application/json",
+                        success: function () {
+                            console.log("Done hehehe")
+                            location.reload();
+                        }
+                    });
+                }
+            });
         });
         </script>
     }
@@ -63,6 +84,15 @@
             <hr />
             <div class="comment-actions">
                 @{
+                    if (ViewBag.CurrentUser != null && ViewBag.CurrentUser.LikedComments.Contains(comment))
+                    {
+                        <button class="btn btn-default liked-button">Liked By You</button>
+                    }
+                    else if (ViewBag.CurrentUser != null)
+                    {
+                        <button class="btn btn-default like-button @comment.CommentId">Like</button>
+                    }
+
                     <span>@comment.Engagement.Likes Likes</span>
                 }
             </div>

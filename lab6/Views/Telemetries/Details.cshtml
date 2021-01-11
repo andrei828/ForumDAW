@@ -1,0 +1,44 @@
+﻿@model lab6.Models.Telemetry
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<link href="~/StyleSheetAdmin.css" rel="stylesheet" type="text/css" />
+
+<h2>Details</h2>
+
+<div>
+    <h4>Telemetry</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalTopics)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalTopics)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalPosts)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalPosts)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalComments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalComments)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TelemetryId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

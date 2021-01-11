@@ -3,6 +3,8 @@
     ViewBag.Title = "Edit role of user";
 }
 
+<link href="~/StyleSheetAdmin.css" rel="stylesheet" type="text/css" />
+
 <h2>@ViewBag.Title</h2>
 
 @using (Html.BeginForm(actionName: "Edit", controllerName: "Users", routeValues: new { id = @Model.User.Id }))

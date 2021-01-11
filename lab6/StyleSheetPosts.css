@@ -57,3 +57,11 @@ body {
 #bt-newcomment {
     transform: translateY(-2.3px);
 }
+
+.like-button {
+    transform: translate(-15px, -6px) !important;
+}
+
+.liked-button {
+    transform: translate(-15px, -6px) !important;
+}

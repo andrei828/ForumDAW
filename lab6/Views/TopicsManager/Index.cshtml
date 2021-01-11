@@ -10,7 +10,19 @@
 </div>
 
 <div style="text-align:center">
-    <button class="btn btn-default follow-btn" id="bt-follow">Follow topic <span class="badge">@ViewBag.Topic.Followers.Count</span></button>
+    @if (ViewBag.CurrentUser != null && ViewBag.CurrentUser.Topics.Contains(ViewBag.Topic))
+    {
+        <button class="btn btn-default follow-btn" id="bt-follow">Following <span class="badge">@ViewBag.Topic.Followers.Count</span></button>
+    }
+    else if (ViewBag.CurrentUser != null)
+    {
+        <button class="btn btn-default follow-btn" id="bt-follow">Follow topic <span class="badge">@ViewBag.Topic.Followers.Count</span></button>
+    }
+    else
+    {
+        <button class="btn btn-default follow-btn" id="bt-follow-offline">Followers <span class="badge">@ViewBag.Topic.Followers.Count</span></button>
+    }
+
 
     <input type="text" placeholder="Add a new post..." class="form-control" id="new_post" />
     <button class="btn btn-default" id="bt-newpost">Create a post</button>

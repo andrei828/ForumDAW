@@ -8,17 +8,21 @@ namespace lab6.Models
 {
     public class Topic
     {
+        [Key]
         [Required(ErrorMessage = "Missing field")]
         public int TopicId { get; set; }
 
+        [NoBadWords]
         [StringLength(502)]
         [Required(ErrorMessage = "Missing field")]
         public string Title { get; set; }
 
-        // One to Many
+        // Many to Many
+        //[Required(ErrorMessage = "Missing field")]
         public virtual ICollection<ApplicationUser> Followers { get; set; }
 
         // One to Many
+        //[Required(ErrorMessage = "Missing field")]
         public virtual ICollection<Post> Posts { get; set; }
     }
 }

@@ -9,7 +9,7 @@
 
 <br />
 
-@if(ViewBag.CurrentUser != null)
+@if (ViewBag.CurrentUser != null)
 {
     <h2 class="title-label"> Your following topics</h2>
     if (ViewBag.CurrentUser.Topics.Count < 1)
@@ -51,7 +51,7 @@
                     <div class="topic-item-top">
                         <span class="topic-title">@topic.Title</span>
                         <button class="btn btn-default follow-btn" type="button">
-                            Follow <span class="badge">@topic.Followers.Count</span>
+                            Followers  <span class="badge">@topic.Followers.Count</span>
                         </button>
                     </div>
                     <hr>

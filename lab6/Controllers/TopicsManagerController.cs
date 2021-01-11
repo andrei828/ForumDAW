@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using lab6.Models;
+using Microsoft.AspNet.Identity;
 
 namespace lab6.Controllers
 {
@@ -17,6 +18,7 @@ namespace lab6.Controllers
         // GET: TopicsManager
         public ActionResult Index(int id)
         {
+            ViewBag.CurrentUser = db.Users.Find(User.Identity.GetUserId());
             ViewBag.Topic = (Topic) db.Topics.Find(id);
             return View();
         }

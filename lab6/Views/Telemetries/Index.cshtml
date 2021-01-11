@@ -1,0 +1,60 @@
+﻿@model IEnumerable<lab6.Models.Telemetry>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<link href="~/StyleSheetAdmin.css" rel="stylesheet" type="text/css" />
+
+<h2>Telemetry</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table-bordered table-hover table-responsive">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Region)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalTopics)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPosts)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalComments)
+        </th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Region)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalTopics)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalPosts)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalComments)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.TelemetryId })
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.TelemetryId })
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id = item.TelemetryId })
+        </td>
+    </tr>
+}
+
+</table>

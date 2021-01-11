@@ -97,9 +97,14 @@ namespace lab6.Controllers
             };
             currentTopic.Posts.Add(newPost);
 
-            db.Posts.Add(newPost);
-            db.SaveChanges();
-
+            try
+            {
+                db.Posts.Add(newPost);
+                db.SaveChanges();
+            } catch (Exception e)
+            {
+                return BadRequest("Not done");
+            }
             return StatusCode(HttpStatusCode.OK);
         }
 

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -86,6 +87,32 @@ namespace lab6.Controllers
             {
                 return View(uvm);
             }
+        }
+
+        // GET: Users/Delete/5
+        [HttpGet]
+        public ActionResult Delete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ApplicationUser user = ctx.Users.Find(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(string id)
+        {
+            ApplicationUser user = ctx.Users.Find(id);
+            ctx.Users.Remove(user);
+            ctx.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

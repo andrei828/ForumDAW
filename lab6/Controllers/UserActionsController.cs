@@ -19,6 +19,11 @@ namespace lab6.Controllers
             public int TopicId { get; set; }
         }
 
+        public class BaseComment
+        {
+            public int CommentId { get; set; }
+        }
+
         // GET: api/UserActions
         public IEnumerable<string> Get()
         {
@@ -56,6 +61,21 @@ namespace lab6.Controllers
             topic.Followers.Add(currentUser);
             currentUser.Topics.Add(topic);
             
+            db.SaveChanges();
+            return StatusCode(HttpStatusCode.OK);
+        }
+
+        [HttpPost]
+        [ActionName("Like")]
+        public IHttpActionResult Like(BaseComment currentComment)
+        {
+            Comment comment = db.Comments.Find(currentComment.CommentId);
+            ApplicationUser currentUser = db.Users.Find(User.Identity.GetUserId());
+
+            comment.LikedBy.Add(currentUser);
+            comment.Engagement.Likes += 1;
+            currentUser.LikedComments.Add(comment);
+
             db.SaveChanges();
             return StatusCode(HttpStatusCode.OK);
         }

@@ -7,126 +7,127 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using lab6.Models;
-using Microsoft.AspNet.Identity;
 
 namespace lab6.Controllers
 {
-    public class PostsManagerController : Controller
+    [Authorize(Roles = "Admin")]
+    public class TelemetriesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: PostsManager
-        public ActionResult Index(int id)
+        // GET: Telemetries
+        public ActionResult Index()
         {
-            Post currentPost = (Post)db.Posts.Find(id);
+            Telemetry telemetry = db.Telemetries.Find(1);
+            
+            telemetry.TotalPosts = db.Posts.Count();
+            telemetry.TotalTopics = db.Topics.Count();
+            telemetry.TotalComments = db.Comments.Count();
 
-            currentPost.Views += 1;
             db.SaveChanges();
-            ViewBag.Post = currentPost;
-            ViewBag.CurrentUser = db.Users.Find(User.Identity.GetUserId());
-            return View();
+            return View(db.Telemetries.ToList());
         }
 
-        [ActionName("ListPosts")]
-        public ActionResult ListPosts()
-        {
-            ViewBag.Posts = db.Posts.ToList();
-            return View(ViewBag.Posts);
-        }
-
-        // GET: PostsManager/Details/5
+        // GET: Telemetries/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = db.Posts.Find(id);
-            if (post == null)
+            Telemetry telem = db.Telemetries.Find(1);
+
+            telem.TotalPosts = db.Posts.Count();
+            telem.TotalTopics = db.Topics.Count();
+            telem.TotalComments = db.Comments.Count();
+
+            db.SaveChanges();
+            Telemetry telemetry = db.Telemetries.Find(id);
+            if (telemetry == null)
             {
                 return HttpNotFound();
             }
-            return View(post);
+            return View(telemetry);
         }
 
-        // GET: PostsManager/Create
+        // GET: Telemetries/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: PostsManager/Create
+        // POST: Telemetries/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PostId,Content")] Post post)
+        public ActionResult Create([Bind(Include = "TelemetryId,Region,TotalTopics,TotalPosts,TotalComments")] Telemetry telemetry)
         {
             if (ModelState.IsValid)
             {
-                db.Posts.Add(post);
+                db.Telemetries.Add(telemetry);
                 db.SaveChanges();
-                return RedirectToAction("ListPosts");
+                return RedirectToAction("Index");
             }
 
-            return View(post);
+            return View(telemetry);
         }
 
-        // GET: PostsManager/Edit/5
+        // GET: Telemetries/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = db.Posts.Find(id);
-            if (post == null)
+            Telemetry telemetry = db.Telemetries.Find(id);
+            if (telemetry == null)
             {
                 return HttpNotFound();
             }
-            return View(post);
+            return View(telemetry);
         }
 
-        // POST: PostsManager/Edit/5
+        // POST: Telemetries/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PostId,Content")] Post post)
+        public ActionResult Edit([Bind(Include = "TelemetryId,TotalTopics,TotalPosts,TotalComments")] Telemetry telemetry)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(post).State = EntityState.Modified;
+                db.Entry(telemetry).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("ListPosts");
+                return RedirectToAction("Index");
             }
-            return View(post);
+            return View(telemetry);
         }
 
-        // GET: PostsManager/Delete/5
+        // GET: Telemetries/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = db.Posts.Find(id);
-            if (post == null)
+            Telemetry telemetry = db.Telemetries.Find(id);
+            if (telemetry == null)
             {
                 return HttpNotFound();
             }
-            return View(post);
+            return View(telemetry);
         }
 
-        // POST: PostsManager/Delete/5
+        // POST: Telemetries/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Post post = db.Posts.Find(id);
-            db.Posts.Remove(post);
+            Telemetry telemetry = db.Telemetries.Find(id);
+            db.Telemetries.Remove(telemetry);
             db.SaveChanges();
-            return RedirectToAction("ListPosts");
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

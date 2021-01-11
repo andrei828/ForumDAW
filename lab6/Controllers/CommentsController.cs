@@ -24,7 +24,6 @@ namespace lab6.Controllers
         {
             public String Content { get; set; }
             public int PostId { get; set; }
-            //public int UserId { get; set; }
         }
 
         // GET: api/Comments
@@ -96,14 +95,19 @@ namespace lab6.Controllers
             Comment newComment = new Comment {
                 Post = currentPost,
                 Content = commentData.Content,
-                Author = currentUser.UserName,
+                Author = (currentUser == null) ? "Anonymus" : currentUser.UserName,
                 Engagement = new Engagement { Likes = 0 }
             };
             currentPost.Comments.Add(newComment);
-            
-            db.Comments.Add(newComment);
-            db.SaveChanges();
 
+            try
+            {
+                db.Comments.Add(newComment);
+                db.SaveChanges();
+            } catch (Exception E)
+            {
+                return BadRequest("Not done");
+            }
             return StatusCode(HttpStatusCode.OK);
         }
 
